@@ -1,1 +1,1 @@
-/home/rstone/git/freebsd/sys/netinet6/in6_cksum.c
+../../freebsd/sys/netinet6/in6_cksum.c

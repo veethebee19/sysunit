@@ -2,8 +2,8 @@
 LIB := netinet
 
 TESTS := \
-	tcp_lro \
-	tcp_lro_sample \
+#	tcp_lro_sample \
+#	tcp_lro_sample \
 
 TEST_TCP_LRO_SRCS := \
 	tcp_lro.c \

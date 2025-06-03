@@ -172,7 +172,7 @@ size_t TcpLroTestSuite<IPv6>::GetNetworkHeaderLen()
 }
 
 typedef ::testing::Types<IPv4, IPv6> NetworkTypes;
-TYPED_TEST_CASE(TcpLroTestSuite, NetworkTypes);
+TYPED_TEST_SUITE(TcpLroTestSuite, NetworkTypes);
 
 // Create two packets from the same TCP/IP flow in sequence and send them
 // into tcp_lro.  Verify that that LRO merges the frames into a single larger

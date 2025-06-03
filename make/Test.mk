@@ -50,8 +50,10 @@ $$(TEST_$$(TEST)_GTEST_OBJ): LIB := $(LIB)
 
 TEST_$$(TEST)_OBJPATHS := $$(TEST_$$(TEST)_OBJPATHS) $$(TEST_$$(TEST)_GTEST_OBJ)
 
-TEST_$$(TEST)_LIBARGS := $$(addprefix $$(LIBDIR)/lib,  $$(addsuffix .a, $$(TEST_$$(TEST)_LIBS)))
+TEST_$$(TEST)_LINK_LIBS := $$(foreach lib, $$(TEST_$$(TEST)_LIBS), $$(LIBDIR)/lib$$(lib).a)
 
+TEST_$$(TEST)_LIBARGS := $$(foreach lib, $$(TEST_$$(TEST)_LIBS), \
+	    -Wl,--whole-archive $$(LIBDIR)/lib$$(lib).a -Wl,--no-whole-archive)
 TEST_$$(TEST)_STDLIBARGS:= \
 	$$(addprefix -l,$$(TEST_$$(TEST)_STDLIBS)) \
 	    -lgtest -lgtest_main -lpthread
@@ -62,7 +64,7 @@ TEST_$$(TEST)_PROG := $$(TEST_$$(TEST)_OUTDIR)/$1.testprog
 TEST_PROGS := $$(TEST_PROGS) $$(TEST_$$(TEST)_PROG)
 
 $$(TEST_$$(TEST)_PROG): TEST := $$(TEST)
-$$(TEST_$$(TEST)_PROG): $$(TEST_$$(TEST)_OBJPATHS) $$(TEST_$$(TEST)_LIBARGS)
+$$(TEST_$$(TEST)_PROG): $$(TEST_$$(TEST)_OBJPATHS) $$(TEST_$$(TEST)_LINK_LIBS)
 	mkdir -p $$(dir $$@)
 	$${CXX} -Wl,-L/usr/local/lib $$(LDFLAGS) $$(TEST_$$(TEST)_OBJPATHS) \
 	    $$(TEST_$$(TEST)_LIBARGS) $$(TEST_$$(TEST)_STDLIBARGS) -o $$@

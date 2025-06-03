@@ -39,6 +39,7 @@
 #include <kern_include/vm/uma_dbg.h>
 
 #include <fake/mbuf.h>
+#include <fake/mbuf_common.h>
 
 uma_zone_t zone_mbuf;
 uma_zone_t zone_pack;
@@ -193,6 +194,7 @@ static void m_ext_free_malloc(struct mbuf *m)
 struct mbuf *
 alloc_mbuf(size_t len)
 {
+        printf("alloc_mbuf() START. Global zone_mbuf value: %p (from mbuf.c)\n", (void*)zone_mbuf);
 	struct mbuf *m;
 	void *ext;
 

@@ -39,9 +39,10 @@ extern "C" {
 #include "MbufInit.h"
 
 #include <stdexcept>
+#include <fake/mbuf_common.h>
 
-uma_zone_t zone_mbuf;
-uma_zone_t zone_pack;
+//uma_zone_t zone_mbuf;
+//uma_zone_t zone_pack;
 
 /*
  * Constructor for Mbuf master zone.
@@ -100,6 +101,8 @@ mb_dtor_mbuf(void *mem, int size, void *arg)
 void
 MbufInit::SetUp()
 {
+	printf("MbufInit::SetUp() START. Current MbufInit object address: %p\n", (void*)this);
+	printf("MbufInit::SetUp() START. Global zone_mbuf address: %p, value: %p\n", (void*)&zone_mbuf, (void*)zone_mbuf);
 	if (zone_mbuf != NULL)
 		throw std::runtime_error("Previous testcase did not TearDown fake_mbuf");
 
@@ -107,6 +110,7 @@ MbufInit::SetUp()
 	    mb_ctor_mbuf, mb_dtor_mbuf,
 	    trash_init, trash_fini,
 	    MSIZE - 1, UMA_ZONE_MAXBUCKET);
+	printf("MbufInit::SetUp() END. Global zone_mbuf value after uma_zcreate: %p\n", (void*)zone_mbuf);
 }
 
 void
@@ -116,5 +120,5 @@ MbufInit::TearDown()
 	zone_mbuf = NULL;
 }
 
-static MbufInit mbufInit;
+static volatile MbufInit mbufInit;
 

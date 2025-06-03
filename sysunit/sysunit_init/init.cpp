@@ -30,6 +30,8 @@
 #include "sysunit/TestSuite.h"
 
 #include <vector>
+#include <cstdio>
+#include <typeinfo>
 
 namespace SysUnit {
 
@@ -65,11 +67,18 @@ namespace SysUnit {
 
 	void TestSuite::SetUp()
 	{
+		printf("TestSuite::SetUp() CALLED. Initializer list size: %zu\n", GetInitList().size());
 		auto & initList(GetInitList());
 		std::sort(initList.begin(), initList.end(), InitializerComp());
 
-		for (auto * init : initList)
+		printf("--- Initializer List Contents (Sorted) ---\n");
+		for (auto * init : initList) {
+			//printf("  Initializer: Subsystem: %d, Order: %d, Object address: %p",
+			//		               init->subsystem, init->order, (void*)init);
+			printf(" (Type: %s)", typeid(*init).name());
+			printf("\n");
 			init->SetUp();
+		}
 		initialized = true;
 
 		TestCaseSetUp();

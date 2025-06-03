@@ -4,6 +4,8 @@ SUBDIRS=\
 	mock \
 	netinet \
 	sysunit \
+	gve_tests \
+	gve_tests/gve \
 
 .DEFAULT_GOAL:=all
 

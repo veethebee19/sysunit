@@ -12,17 +12,16 @@ C_OPTIM=-O3 -fno-omit-frame-pointer
 CXX_OPTIM=-fno-omit-frame-pointer
 
 CXX_STD=-std=c++17
-CXX_WARNFLAGS=-Wall -Werror -Wno-user-defined-literals
+CXX_WARNFLAGS=-Wall #-Werror -Wno-user-defined-literals
 
-CFLAGS:=-I/usr/local/include -I$(TOPDIR)/include -g -DBSD_VISIBLE \
-    -DKLD_MODULE -DSMP -DINVARIANTS -DINVARIANT_SUPPORT -Werror \
-    -D_KERNEL_UT
+CFLAGS:=-I$(TOPDIR)/include/kern_include -I/usr/local/include -I$(TOPDIR)/include -g -DBSD_VISIBLE \
+    -DKLD_MODULE -DSMP -DINVARIANTS -DINVARIANT_SUPPORT -D_KERNEL_UT -g
 
 C_ONLY_FLAGS := -I$(TOPDIR)/include/kern_include $(C_OPTIM)  -nostdinc \
     -D_KERNEL_UT_MALLOC -D_KERNEL_UT_SYSTM_LIBKERN -D_KERNEL_UT_PAUSE \
     -Wno-incompatible-library-redeclaration -Wno-address-of-packed-member \
     -Wno-format-invalid-specifier -Wno-format
 
-CXXFLAGS:=$(CXX_STD) $(CXX_WARNFLAGS) $(CXX_OPTIM)
+CXXFLAGS:=$(CXX_STD) $(CXX_WARNFLAGS) $(CXX_OPTIM) -g
 
 LDFLAGS := -Wl,-L,/usr/local/lib

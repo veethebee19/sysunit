@@ -9,4 +9,4 @@ SUBDIRS := \
 	panic \
 	phash \
 	uma \
-
+	gve \

@@ -1,1 +1,1 @@
-/home/rstone/git/freebsd/sys/kern/kern_mib.c
+../../freebsd/sys/kern/kern_mib.c
