@@ -14,7 +14,7 @@ CXX_OPTIM=-fno-omit-frame-pointer
 CXX_STD=-std=c++17
 CXX_WARNFLAGS=-Wall #-Werror -Wno-user-defined-literals
 
-CFLAGS:=-I$(TOPDIR)/include/kern_include -I/usr/local/include -I$(TOPDIR)/include -g -DBSD_VISIBLE \
+CFLAGS:=-I$(TOPDIR)/include/kern_include -I/usr/local/include -I$(TOPDIR)/include -I$(TOPDIR)/fakes/gve -g -DBSD_VISIBLE \
     -DKLD_MODULE -DSMP -DINVARIANTS -DINVARIANT_SUPPORT -D_KERNEL_UT -g
 
 C_ONLY_FLAGS := -I$(TOPDIR)/include/kern_include $(C_OPTIM)  -nostdinc \

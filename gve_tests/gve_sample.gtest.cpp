@@ -2,13 +2,12 @@
 #include <gmock/gmock.h>
 
 #include "sysunit/TestSuite.h" 
-//#include "fakes/gve/gve_common_fakes.h"
+#include "gve_common_fakes.h"
 #include <cstring> 
 
 extern "C" {
 #include <kern_include/sys/types.h>
 #include "gve.h"
-#include "gve_main.c"
 }
 
 class GveMainTestSuite : public SysUnit::TestSuite {

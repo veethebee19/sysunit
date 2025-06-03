@@ -2,10 +2,11 @@ LIB := gve_test
 
 TESTS := \
 	gve_sample \
-#       tcp_lro_sample \
+
 
 TEST_GVE_SRCS := \
 	gve_sample.gtest.cpp \
+	gve/gve_main.c \
 
 TEST_GVE_LIBS := \
 	gve \

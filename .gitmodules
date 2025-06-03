@@ -1,4 +1,4 @@
 [submodule "freebsd"]
 	path = freebsd
-	url = https://github.com/rysto32/freebsd.git
-	branch = ut-support
+	url = https://github.com/veethebee19/freebsd.git
+	branch = master

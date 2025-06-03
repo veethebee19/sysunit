@@ -1,6 +1,6 @@
 // sysunit/fakes/gve/gve_common_fakes.c
 #include <sys/types.h>
-#include <kern_include/dev/gve/gve.h>
+// #include "gve_tests/gve/gve.h"
 #include "fakes/gve/gve_common_fakes.h"
 
 int gve_allow_4k_rx_buffers = 0;
